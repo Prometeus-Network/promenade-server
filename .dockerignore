@@ -1,2 +1,10 @@
 .git
 node_modules
+.env
+*.env
+*.env*
+.gitignore
+.idea
+.vscode
+Dockerfile
+README.md
