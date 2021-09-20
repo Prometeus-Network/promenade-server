@@ -21,4 +21,4 @@ jobs:
           GITHUB_SHA: ${{ github.sha }}
         with:
           args: |
-            helm upgrade --install --set=image.tag=$GITHUB_SHA $HELM_CHART ./charts/$HELM_CHART
+            helm upgrade --install -f ./charts/$HELM_CHART/testnet.yml --set=image.tag=$GITHUB_SHA $HELM_CHART ./charts/$HELM_CHART
