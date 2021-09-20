@@ -2,7 +2,7 @@ name: Build docker image
 
 env:
   REGISTRY: registry.digitalocean.com
-  IMAGE_NAME: promenade/promenade-marketplace-tracker
+  IMAGE_NAME: promenade/promenade-server
 
 on:
   push:
@@ -11,17 +11,22 @@ on:
 
 jobs:
   build:
+    environment: testnet
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Build image
-        run: docker build -t $IMAGE_NAME .
+        run: docker build --build-arg -t $IMAGE_NAME .
       - name: Install doctl
         uses: digitalocean/action-doctl@v2
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
       - name: Push image to DO registry
+        env:
+          GITHUB_SHA: ${{ github.sha }}
         run: |
           doctl registry login
           docker tag $IMAGE_NAME $REGISTRY/$IMAGE_NAME:latest
+          docker tag $IMAGE_NAME $REGISTRY/$IMAGE_NAME:$GITHUB_SHA
           docker push $REGISTRY/$IMAGE_NAME:latest
+          docker push $REGISTRY/$IMAGE_NAME:$GITHUB_SHA

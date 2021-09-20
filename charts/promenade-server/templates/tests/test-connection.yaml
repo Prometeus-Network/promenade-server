@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "promenade-server.fullname" . }}-test-connection"
+  labels:
+    {{- include "promenade-server.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args: ['{{ include "promenade-server.fullname" . }}:{{ .Values.service.port }}']
+  restartPolicy: Never
