@@ -27,3 +27,4 @@ Code for server side deployment of Fantom Promenade Marketplace.
 | IMGBB_API_KEY         | !! Not used
 | WFTM_ADDRESS          | WFTM token address
 | VALIDATORADDRESS      | Used in minting/burning tokens somehow
+| PROMENADE_API_SECRET  | Secret key for internal keys
