@@ -4,6 +4,7 @@ require("dotenv").config();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const morgan = require("morgan");
 const port = 5001;
 
 app.use(
@@ -54,6 +55,7 @@ app.use(bodyParser.json());
 app.use(express.json());
 app.options("*", cors()); // include before other routes
 app.use(cors());
+app.use(morgan('combined'))
 app.use(require("./apis"));
 
 const priceFeed = require("./services/price.feed");
