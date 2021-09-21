@@ -44,11 +44,11 @@ spec:
           livenessProbe:
             httpGet:
               path: /info/getNewestTokens
-              port: http
+              port: api
           readinessProbe:
             httpGet:
               path: /info/getNewestTokens
-              port: http
+              port: api
           envFrom:
              {{- toYaml .Values.envFrom | nindent 12 }}
           volumeMounts: 
