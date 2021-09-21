@@ -10,7 +10,7 @@ const PROMENADE_API_SECRET = process.env.PROMENADE_API_SECRET;
 const service_auth = (req, res, next) => {
   let request_ip = requestIP.getClientIp(req);
   const xPromenadeAPISecret = req.get('x-promenade-api-secret');
-console.log(PROMENADE_API_SECRET,'r', xPromenadeAPISecret)
+  
   if (
     request_ip == tracker_ip1 ||
     request_ip == tracker_ip2 ||
