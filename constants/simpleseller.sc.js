@@ -1,6 +1,7 @@
 const SimpleNFTSellerContract = {
   MAINNET_ADDRESS: '0xBe815322D12fE89E44dc2a4A6E613612C37e6840',
   TESTNET_ADDRESS: '0x1856293cEB1AE47C4E64e4e8224E14956C191c19',
+  //what's that
   ABI: [
     {
       anonymous: false,
