@@ -28,3 +28,7 @@ Code for server side deployment of Fantom Promenade Marketplace.
 | WFTM_ADDRESS          | WFTM token address
 | VALIDATORADDRESS      | Used in minting/burning tokens somehow
 | PROMENADE_API_SECRET  | Secret key for internal keys
+| NFT_FACTORY_PRIVATE   | Fantom nft factory private | "0xbDFeE1383AB4D18818201E1b8Ad495402C6fb1ae" |
+| NFT_FACTORY_PUBLIC    | Fantom nft factory public | "0xd0aB23F3D8012d86877c481262ed696E5dA35d76" |
+| NFT_ART_FACTORY_PRIVATE| Fantrom nft art factory private| "0xbDFeE1383AB4D18818201E1b8Ad495402C6fb1ae" |
+| NFT_ART_FACTORY_PUBLIC | Fantom nft art factory public | "0xd0aB23F3D8012d86877c481262ed696E5dA35d76" |
