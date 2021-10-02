@@ -1,4 +1,4 @@
-name: Deploy (mainnet)
+name: Deploy (testnet)
 
 env:
   REGISTRY: registry.digitalocean.com
@@ -10,7 +10,7 @@ on:
 
 jobs:
   deploy:
-    environment: mainnet
+    environment: testnet
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -21,4 +21,4 @@ jobs:
           GITHUB_SHA: ${{ github.sha }}
         with:
           args: |
-            helm upgrade --install -f ./charts/$HELM_CHART/mainnet.yml --set=image.tag=$GITHUB_SHA $HELM_CHART ./charts/$HELM_CHART
+            helm upgrade --install -f ./charts/$HELM_CHART/testnet.yml --set=image.tag=$GITHUB_SHA $HELM_CHART ./charts/$HELM_CHART
