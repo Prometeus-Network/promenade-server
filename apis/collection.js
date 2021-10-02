@@ -309,7 +309,7 @@ router.post("/reviewApplication", admin_auth, async (req, res) => {
     } else if (status == 1) {
       // update smart contract for royalty
       let feeRecipient = toLowerCase(collection.feeRecipient);
-      let royalty = parseInt(collection.royalty * 0);
+      let royalty = parseInt(collection.royalty * 100);
       let creator = collection.owner;
 
       // validate fee receipient to be a valid erc20 address
@@ -349,7 +349,8 @@ router.post("/reviewApplication", admin_auth, async (req, res) => {
           contractAddress,
           creator,
           royalty,
-          feeRecipient
+          feeRecipient,
+          { gasLimit: 4000000 }
         );
       } catch (error) {
         console.log("error in setting collection royalty");
