@@ -2,6 +2,8 @@ require("dotenv").config();
 const mongoose = require("mongoose");
 const NFTITEM = mongoose.model("NFTITEM");
 const messageUtils = require("./message.utils");
+const sgMail = require("@sendgrid/mail");
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 const app_url = process.env.APP_URL;
 const storage_url = process.env.RUNTIME
@@ -20,7 +22,7 @@ const getNFTThumbnailPath = async (nft, tokenID) => {
     return null;
   }
 };
-const createMessage = async (data) => {
+const createMessage = async data => {
   let message = {};
   let event = data.event;
   switch (event) {
@@ -110,7 +112,7 @@ const createMessage = async (data) => {
   return message;
 };
 
-const sendEmailMarketplace = async (data) => {
+const sendEmailMarketplace = async data => {
   let message = await createMessage(data);
   sgMail.sendMultiple(message, (error, result) => {
     if (error) {

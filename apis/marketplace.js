@@ -32,7 +32,7 @@ const getNFTItemName = async (nft, tokenID) => {
   }
 };
 
-const getUserAlias = async (walletAddress) => {
+const getUserAlias = async walletAddress => {
   try {
     let account = await Account.findOne({ address: walletAddress });
     if (account) return account.alias;
