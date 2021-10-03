@@ -32,7 +32,7 @@ const provider = new ethers.providers.JsonRpcProvider(
 const runPriceFeed = async () => {
   try {
     let paymentTokens = await PayToken.find({});
-    paymentTokens.map(async (token) => {
+    paymentTokens.map(async token => {
       try {
         let proxy = chainLinkContracts.get(token.address);
         if (proxy) {
@@ -60,7 +60,7 @@ const runPriceFeed = async () => {
 
 // a background service to get names & symbols for erc20 tokens
 
-const getPrice = (address) => {
+const getPrice = address => {
   address = toLowerCase(address);
   if (
     address == "ftm" ||
@@ -76,12 +76,13 @@ const getPrice = (address) => {
   return price;
 };
 
-const getDecimals = async (address) => {
+const getDecimals = async address => {
   address = toLowerCase(address);
   if (
     address == "ftm" ||
     address == "wftm" ||
     address == "fantom" ||
+    address == "0x0000000000000000000000000000000000000000" ||
     address == validatorAddress
   )
     address = toLowerCase(process.env.WFTM_ADDRESS);
@@ -94,9 +95,14 @@ const getDecimals = async (address) => {
   return decimal;
 };
 
-const getSymbol = async (address) => {
+const getSymbol = async address => {
   address = toLowerCase(address);
-  if (address == "ftm" || address == "fantom" || address == validatorAddress)
+  if (
+    address == "ftm" ||
+    address == "fantom" ||
+    address == validatorAddress ||
+    address == "0x0000000000000000000000000000000000000000"
+  )
     return "FTM";
   if (address == "wftm") address = toLowerCase(process.env.WFTM_ADDRESS);
   let symbol = symbolStore.get(address);
@@ -107,9 +113,14 @@ const getSymbol = async (address) => {
   return symbol;
 };
 
-const getName = async (address) => {
+const getName = async address => {
   address = toLowerCase(address);
-  if (address == "ftm" || address == "fantom" || address == validatorAddress)
+  if (
+    address == "ftm" ||
+    address == "fantom" ||
+    address == validatorAddress ||
+    address == "0x0000000000000000000000000000000000000000"
+  )
     return "Fantom";
   if (address == "wftm") address = toLowerCase(process.env.WFTM_ADDRESS);
   let name = nameStore.get(address);
