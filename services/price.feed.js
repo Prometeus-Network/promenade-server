@@ -53,6 +53,7 @@ const runPriceFeed = async () => {
       } catch (error) {}
     });
   } catch (error) {}
+
   setTimeout(async () => {
     await runPriceFeed();
   }, 1000 * 60 * 5);

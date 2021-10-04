@@ -32,7 +32,7 @@ router.post("/addNewToken", admin_auth, async (req, res) => {
   try {
     let address = extractAddress(req, res);
     let signature = req.body.signature;
-    let retrievedAddr = toLowerCase(req.body.retrievedAddr);
+    let retrievedAddr = toLowerCase(req.body.signatureAddress);
     // verify if signature is valid
     let isValidsignature = await validateSignature(
       address,
